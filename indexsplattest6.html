@@ -1,0 +1,57 @@
+Aframesplats/
+  index.html
+  assets/
+    clusterflyS.ply
+
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>A-Frame Gaussian Splat Viewer</title>
+
+    <!-- A-Frame -->
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+
+    <!-- Gaussian Splatting component for A-Frame -->
+    <script src="https://quadjr.github.io/aframe-gaussian-splatting/index.js"></script>
+  </head>
+
+  <body style="margin:0;">
+
+    
+
+    <a-scene 
+    background="color: #111" renderer="colorManagement: true;">
+
+    <a-assets>
+    <a-asset-item id="box1" src="https://lukasgoldbaum.github.io/Splat_Test/Assets/testbox1.glb"></a-asset-item>
+    <a-asset-item id="box2" src="https://lukasgoldbaum.github.io/Splat_Test/Assets/testbox2.glb"></a-asset-item>
+    </a-assets>
+
+
+      <!-- Licht ist für Splats meist egal, aber hilft beim Orientieren -->
+      <a-entity light="type: ambient; intensity: 1"></a-entity>
+
+      <!-- Kamera + einfache Controls -->
+      <a-entity position="0 1.6 3">
+        <a-camera
+          wasd-controls="acceleration: 40"
+          look-controls="pointerLockEnabled: true"
+        ></a-camera>
+      </a-entity>
+
+      <!-- Dein Splat -->
+      <a-entity gaussian_splatting="src: https://lukasgoldbaum.github.io/Splat_Test/Assets/clusterflyS.ply" scale="40 40 40"></a-entity>
+      <a-entity gltf-model="#box1" position="0 0 0"></a-entity>
+      <a-entity gltf-model="#box2" position="0 0 0"></a-entity>
+
+
+    
+
+      <!-- Boden als Referenz -->
+      <a-plane rotation="-90 0 0" width="50" height="50" color="#222"></a-plane>
+    </a-scene>
+  </body>
+</html>
